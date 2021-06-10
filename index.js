@@ -3,6 +3,12 @@ const EXERCISES_URL = "http://localhost:3000/api/v1/exercise"
 
 document.addEventListener("DOMContentLoaded", () => {
     indexExercises()
+
+    const newExerciseData = document.querySelector("#newExerciseForm")
+
+    newExerciseData.addEventListener("submit", (e) => {
+        createExerciseHandler(e)
+    })
 })
 
 function indexExercises() {
@@ -17,5 +23,23 @@ function indexExercises() {
             })
 
         })
+}
+
+function createExerciseHandler(e) {
+    e.preventDefault()
+    let name = document.querySelector("#name").value
+    let description = document.querySelector("#description").value
+    let category = parseInt(document.querySelector("#category").value)
+
+    const data = {
+
+    }
+
+    fetch(EXERCISES_URL, data)
+        .then(response => response.json())
+        .then(exercise => {
+
+        })
+
 }
 
