@@ -31,8 +31,19 @@ function createExerciseHandler(e) {
     let description = document.querySelector("#description").value
     let category = parseInt(document.querySelector("#category").value)
 
-    const data = {
+    postFetch(name, description, category)
 
+}
+
+function postFetch(name, description, category) {
+    const data = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            name: name,
+            description: description,
+            category: category
+        })
     }
 
     fetch(EXERCISES_URL, data)
@@ -40,6 +51,5 @@ function createExerciseHandler(e) {
         .then(exercise => {
 
         })
-
 }
 
