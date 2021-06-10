@@ -10,6 +10,22 @@
 </head>
 
 <body>
+    <form action="/action.php">
+        <h2>Add New Exercise</h2>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name"><br><br>
+        <label for="description">Description:</label><br>
+        <input type="text" id="description"><br>
+        <label for="category">Choose a category:</label>
+        <select id="category" name="category">
+            <option value="upperbody">UpperBody</option>
+            <option value="lowerbody">LowerBody</option>
+            <option value="core">Core</option>
+            <option value="cardio">Cardio</option>
+        </select><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
     <h3>UpperBody</h3>
     <div id="upperbody"></div>
     <h3>LowerBody</h3>
