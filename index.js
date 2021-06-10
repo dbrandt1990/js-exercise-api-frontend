@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     newExerciseData.addEventListener("submit", (e) => {
         createExerciseHandler(e)
     })
+
+    let exerciseCard = document.querySelectorAll(".exercise-card")
+    console.log(exerciseCard)
+
 })
 
 function indexExercises() {
@@ -16,30 +20,61 @@ function indexExercises() {
         .then(response => response.json())
         .then(exercises => {
             exercises.data.forEach(exercise => {
-
-                markup = `<div id=${exercise.attributes.id}>${exercise.attributes.name}</div>`
-
-                document.querySelector(`#${exercise.attributes.category.name}`).innerHTML += markup
+                renderExercise(exercise)
             })
 
         })
+}
+
+function renderExercise(exercise) {
+
+    let exCard = document.createElement("div")
+    let exName = document.createElement("strong")
+    let exDesc = document.createElement("p")
+    exCard.classList.add("exCard")
+    exName.innerText = exercise.attributes.name
+    exName.classList.add("exName")
+    exDesc.innerText = exercise.attributes.description
+    exDesc.style.display = "none"
+    exName.addEventListener("mouseover", e => {
+        e.preventDefault()
+        exDesc.style.display = "block"
+    })
+
+    exName.addEventListener("mouseout", e => {
+        e.preventDefault()
+        exDesc.style.display = "none"
+    })
+
+    exCard.appendChild(exName)
+    exCard.appendChild(exDesc)
+    //only display description when exercise is hovered
+    document.getElementById(exercise.attributes.category.name).appendChild(exCard)
+
 }
 
 function createExerciseHandler(e) {
     e.preventDefault()
     let name = document.querySelector("#name").value
     let description = document.querySelector("#description").value
-    let category = parseInt(document.querySelector("#category").value)
+    let category_id = parseInt(document.querySelector("#category").value)
 
+    postFetch(name, description, category_id)
+
+}
+
+function postFetch(name, description, category_id) {
+    const bodyData = { name, description, category_id }
     const data = {
-
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bodyData)
     }
 
     fetch(EXERCISES_URL, data)
         .then(response => response.json())
         .then(exercise => {
-
+            renderExercise(exercise.data)
         })
-
 }
 
