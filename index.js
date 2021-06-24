@@ -1,7 +1,25 @@
 const EXERCISES_URL = "http://localhost:3000/api/v1/exercise"
+const ROUTINES_URL = "http://localhost:3000/api/v1/routine"
+const CATEGORY_URL = "http://localhost:3000/api/v1/category"
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    // populate dropdown menus in form
+
+    let catergoryDropDown = document.querySelectorAll(".categorySelection")
+    let exerciseDropDown = document.querySelectorAll(".exerciseSelection")
+    let categories = Category.all
+    for (category in categories) {
+        console.log(category)
+        let option = document.createElement("option")
+        option.text = category.name
+        option.value = category.id
+        catergoryDropDown.add(option)
+    }
+
+
     indexExercises()
 
     const newExerciseData = document.querySelector("#newExerciseForm")
@@ -24,6 +42,7 @@ function indexExercises() {
             })
 
         })
+
 }
 
 function renderExercise(exercise) {

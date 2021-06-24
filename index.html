@@ -11,7 +11,29 @@
 </head>
 
 <body>
-    <form id="newExerciseForm" action="">
+    <!---make routitne form that can choose exercises that exist or create a new one, inputs for sets and reps for each exercise--->
+    <form id="newRoutineForm">
+        <h2>Create A Routine</h2>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title"><br><br>
+        <!---maybe use a form-for to make a drop down taht will add the exercise choosen with the set and rep inputs
+         to the dom which will be submited with the final form -->
+        <label for="exercises">Exercises:</label><br>
+        <!---use JS to populate the dropdown, maybe give the description with a hover over, if not then just have that in the final routine-->
+        <select class="exerciseSelection" name="exercise">
+        </select><br>
+        <label for="categories">Choose a category:</label>
+        <select class="categorySelection" name="category">
+
+        </select><br><br>
+        <input type="submit" value="Submit">
+
+        <div id="routineExercisesContainer">
+        </div>
+
+    </form>
+    <!--is there a way that i can bring this form up from the drop down to add exercises to be chosen from -->
+    <form id="newExerciseForm">
         <h2>Add New Exercise</h2>
         <label for="name">Name:</label><br>
         <input type="text" id="name"><br><br>
@@ -23,6 +45,7 @@
             <option value="2">LowerBody</option>
             <option value="3">Core</option>
             <option value="4">Cardio</option>
+            <option value="5">Full Body</option>
         </select><br><br>
         <input type="submit" value="Submit">
     </form>
