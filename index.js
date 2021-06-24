@@ -6,21 +6,8 @@ const CATEGORY_URL = "http://localhost:3000/api/v1/category"
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // populate dropdown menus in form
-
-    let catergoryDropDown = document.querySelectorAll(".categorySelection")
-    let exerciseDropDown = document.querySelectorAll(".exerciseSelection")
-    let categories = Category.all
-    for (category in categories) {
-        console.log(category)
-        let option = document.createElement("option")
-        option.text = category.name
-        option.value = category.id
-        catergoryDropDown.add(option)
-    }
-
-
     indexExercises()
+    indexCategories()
 
     const newExerciseData = document.querySelector("#newExerciseForm")
 
@@ -28,10 +15,28 @@ document.addEventListener("DOMContentLoaded", () => {
         createExerciseHandler(e)
     })
 
-    let exerciseCard = document.querySelectorAll(".exercise-card")
-    console.log(exerciseCard)
-
 })
+
+function indexCategories() {
+    return fetch(CATEGORY_URL)
+        .then(response => response.json())
+        .then(categories => {
+            categories.forEach(category => addCategoriesToDropDown(category))
+        }
+        )
+}
+
+function addCategoriesToDropDown(category) {
+    let catergoryDropDown = document.querySelectorAll(".categorySelection")
+    catergoryDropDown.forEach(dropDown => {
+        let option = document.createElement("option")
+        option.text = category.name
+        option.value = category.id
+        dropDown.add(option)
+    })
+
+
+}
 
 function indexExercises() {
     return fetch(EXERCISES_URL)
