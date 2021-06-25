@@ -54,18 +54,16 @@ function indexRoutines(method) {
 function renderRoutine(routine) {
 
     let rCard = document.createElement("div")
-    let rTitle = document.createElement("strong")
-    let rCont = document.createElement("p")
+    let rTitle = document.createElement("h2")
+    let rContArr = routine.attributes.content.split(",")
     rCard.classList.add("rCard")
     rTitle.innerText = routine.attributes.title
     rTitle.classList.add("rTitle")
-    rCont.innerText = routine.attributes.content
 
     rCard.appendChild(rTitle)
-    rCard.appendChild(rCont)
 
-    routine.attributes.exercises.forEach(exercise => {
-        rCard.appendChild(renderExercise(exercise))
+    routine.attributes.exercises.forEach((exercise, index) => {
+        rCard.appendChild(renderExercise(exercise, rContArr[index]))
     })
 
     document.getElementById("routine-container").appendChild(rCard)
@@ -97,13 +95,13 @@ function addExercisesToDropDown(exercise) {
 
 }
 
-function renderExercise(exercise) {
+function renderExercise(exercise, name) {
 
     let exCard = document.createElement("div")
     let exName = document.createElement("strong")
     let exDesc = document.createElement("p")
     exCard.classList.add("exCard")
-    exName.innerText = exercise.name
+    exName.innerText = name
     exName.classList.add("exName")
     exDesc.innerText = exercise.description
     exDesc.style.display = "none"
