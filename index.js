@@ -85,16 +85,18 @@ function createRoutineHandler(e) {
     let exercises = document.querySelectorAll(".exerciseSelection")
     let sets = document.querySelectorAll(".sets")
     let reps = document.querySelectorAll(".reps")
+    let exerciseIds = []
     //content built by all values in nodelist
     let content = ``
 
     exercises.forEach((exercise, i) => {
         let exName = exercise.options[exercise.selectedIndex].text
         if (sets[i].value && reps[i].value) {
+            exerciseIds.push(exercise.options[exercise.selectedIndex].value)
             content += `${exName}: ${sets[i].value} x ${reps[i].value}, `
         }
     })
-    console.log(content)
+    console.log(exerciseIds)
     postRoutine(title, content, exercises, category_id)
 
 }
