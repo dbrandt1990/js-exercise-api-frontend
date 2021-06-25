@@ -7,17 +7,24 @@ const CATEGORIES_URL = "http://localhost:3000/api/v1/category"
 document.addEventListener("DOMContentLoaded", () => {
 
     indexExercises(addExercisesToDropDown)
-    // indexExercises(renderExercise)
     indexCategories(addCategoriesToDropDown)
     indexRoutines(renderRoutine)
 
-    const newExerciseData = document.querySelector("#newExerciseForm")
+    const newRoutineData = document.querySelector("#newRoutineForm")
 
-    newExerciseData.addEventListener("submit", (e) => {
-        createExerciseHandler(e)
+    newRoutineData.addEventListener("submit", (e) => {
+        createRoutineHandler(e)
     })
 
+    // const newExerciseData = document.querySelector("#newExerciseForm")
+
+    // newExerciseData.addEventListener("submit", (e) => {
+    //     createExerciseHandler(e)
+    // })
+
 })
+
+//category stuff
 
 function indexCategories(method) {
     return fetch(CATEGORIES_URL)
@@ -69,6 +76,43 @@ function renderRoutine(routine) {
     document.getElementById("routine-container").appendChild(rCard)
 }
 
+
+function createRoutineHandler(e) {
+    e.preventDefault()
+    let title = document.querySelector("#title").value
+    let category_id = parseInt(document.querySelector("#routineCategory").value)
+    //nodelists
+    let exercises = document.querySelectorAll(".exerciseSelection")
+    let sets = document.querySelectorAll(".sets")
+    let reps = document.querySelectorAll(".reps")
+    //content built by all values in nodelist
+    let content = ``
+
+    exercises.forEach((exercise, i) => {
+        let exName = exercise.options[exercise.selectedIndex].text
+        if (sets[i].value && reps[i].value) {
+            content += `${exName}: ${sets[i].value} x ${reps[i].value}, `
+        }
+    })
+    console.log(content)
+    postRoutine(title, content, exercises, category_id)
+
+}
+
+function postRoutine(title, content, exercises, category_id) {
+    const bodyData = { title, content, exercises, category_id }
+    const data = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bodyData)
+    }
+
+    fetch(ROUTINES_URL, data)
+        .then(response => response.json())
+        .then(routine => {
+            renderRoutine(routine.data)
+        })
+}
 //exercise stuff
 
 function indexExercises(method) {
@@ -88,7 +132,7 @@ function addExercisesToDropDown(exercise) {
     exerciseDropDown.forEach(dropDown => {
         let option = document.createElement("option")
         option.text = exercise.attributes.name
-        option.value = exercise.attributes.id
+        option.value = exercise.id
         dropDown.add(option)
     })
 
@@ -128,11 +172,11 @@ function createExerciseHandler(e) {
     let description = document.querySelector("#description").value
     let category_id = parseInt(document.querySelector("#category").value)
 
-    postFetch(name, description, category_id)
+    postExercise(name, description, category_id)
 
 }
 
-function postFetch(name, description, category_id) {
+function postExercise(name, description, category_id) {
     const bodyData = { name, description, category_id }
     const data = {
         method: "POST",
