@@ -1,14 +1,15 @@
 const EXERCISES_URL = "http://localhost:3000/api/v1/exercise"
-const ROUTINES_URL = "http://localhost:3000/api/v1/routine"
-const CATEGORY_URL = "http://localhost:3000/api/v1/category"
+const ROUTINES_URL = "http://localhost:3000/api/v1/routines"
+const CATEGORIES_URL = "http://localhost:3000/api/v1/category"
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
 
     indexExercises(addExercisesToDropDown)
-    indexExercises(renderExercise)
+    // indexExercises(renderExercise)
     indexCategories(addCategoriesToDropDown)
+    indexRoutines(renderRoutine)
 
     const newExerciseData = document.querySelector("#newExerciseForm")
 
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function indexCategories(method) {
-    return fetch(CATEGORY_URL)
+    return fetch(CATEGORIES_URL)
         .then(response => response.json())
         .then(categories => {
             categories.forEach(category => method(category))
@@ -38,6 +39,39 @@ function addCategoriesToDropDown(category) {
 
 
 }
+
+//routine stuff
+
+function indexRoutines(method) {
+    return fetch(ROUTINES_URL)
+        .then(response => response.json())
+        .then(routines => {
+            routines.data.forEach(routine => method(routine))
+        }
+        )
+}
+
+function renderRoutine(routine) {
+
+    let rCard = document.createElement("div")
+    let rTitle = document.createElement("strong")
+    let rCont = document.createElement("p")
+    rCard.classList.add("rCard")
+    rTitle.innerText = routine.attributes.title
+    rTitle.classList.add("rTitle")
+    rCont.innerText = routine.attributes.content
+
+    rCard.appendChild(rTitle)
+    rCard.appendChild(rCont)
+
+    routine.attributes.exercises.forEach(exercise => {
+        rCard.appendChild(renderExercise(exercise))
+    })
+
+    document.getElementById("routine-container").appendChild(rCard)
+}
+
+//exercise stuff
 
 function indexExercises(method) {
     return fetch(EXERCISES_URL)
@@ -69,9 +103,9 @@ function renderExercise(exercise) {
     let exName = document.createElement("strong")
     let exDesc = document.createElement("p")
     exCard.classList.add("exCard")
-    exName.innerText = exercise.attributes.name
+    exName.innerText = exercise.name
     exName.classList.add("exName")
-    exDesc.innerText = exercise.attributes.description
+    exDesc.innerText = exercise.description
     exDesc.style.display = "none"
     exName.addEventListener("mouseover", e => {
         e.preventDefault()
@@ -85,8 +119,8 @@ function renderExercise(exercise) {
 
     exCard.appendChild(exName)
     exCard.appendChild(exDesc)
-    //only display description when exercise is hovered
-    document.getElementById(exercise.attributes.category.name).appendChild(exCard)
+
+    return exCard
 
 }
 
