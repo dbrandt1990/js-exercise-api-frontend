@@ -59,7 +59,6 @@ function indexRoutines(method) {
 }
 
 function renderRoutine(routine) {
-
     let rCard = document.createElement("div")
     let rTitle = document.createElement("h2")
     let rContArr = routine.attributes.content.split(",")
@@ -70,7 +69,8 @@ function renderRoutine(routine) {
     rCard.appendChild(rTitle)
 
     routine.attributes.exercises.forEach((exercise, index) => {
-        rCard.appendChild(renderExercise(exercise, rContArr[index]))
+        let renderedExercise = renderExercise(exercise, rContArr[index])
+        rCard.appendChild(renderedExercise)
     })
 
     document.getElementById("routine-container").appendChild(rCard)
@@ -85,24 +85,24 @@ function createRoutineHandler(e) {
     let exercises = document.querySelectorAll(".exerciseSelection")
     let sets = document.querySelectorAll(".sets")
     let reps = document.querySelectorAll(".reps")
-    let exerciseIds = []
+
     //content built by all values in nodelist
     let content = ``
 
     exercises.forEach((exercise, i) => {
         let exName = exercise.options[exercise.selectedIndex].text
+
         if (sets[i].value && reps[i].value) {
-            exerciseIds.push(exercise.options[exercise.selectedIndex].value)
             content += `${exName}: ${sets[i].value} x ${reps[i].value}, `
         }
     })
-    console.log(exerciseIds)
-    postRoutine(title, content, exercises, category_id)
+
+    postRoutine(title, content, category_id)
 
 }
 
-function postRoutine(title, content, exercises, category_id) {
-    const bodyData = { title, content, exercises, category_id }
+function postRoutine(title, content, category_id) {
+    const bodyData = { title, content, category_id }
     const data = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -112,6 +112,7 @@ function postRoutine(title, content, exercises, category_id) {
     fetch(ROUTINES_URL, data)
         .then(response => response.json())
         .then(routine => {
+            //there is a type mismatch here that makes it so the routine wont render after it is created but it will persist to db and show after refresh
             renderRoutine(routine.data)
         })
 }
