@@ -16,11 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
         createRoutineHandler(e)
     })
 
-    // const newExerciseData = document.querySelector("#newExerciseForm")
+    const newExerciseData = document.querySelector("#newExerciseForm")
 
-    // newExerciseData.addEventListener("submit", (e) => {
-    //     createExerciseHandler(e)
-    // })
+    newExerciseData.addEventListener("submit", (e) => {
+        createExerciseHandler(e)
+    })
 
 })
 
@@ -190,7 +190,7 @@ function postExercise(name, description, category_id) {
     fetch(EXERCISES_URL, data)
         .then(response => response.json())
         .then(exercise => {
-            renderExercise(exercise.data)
+            addExercisesToDropDown(exercise.data)
         })
 }
 
