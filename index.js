@@ -177,6 +177,9 @@ function createExerciseHandler(e) {
 
     postExercise(name, description, category_id)
 
+    // reset the form
+    document.forms["newExercise"].reset()
+
 }
 
 function postExercise(name, description, category_id) {
