@@ -60,7 +60,7 @@ function indexRoutines(method) {
 
 function renderRoutine(routine) {
     let rCard = document.createElement("div")
-    let rTitle = document.createElement("h2")
+    let rTitle = document.createElement("h3")
     let rContArr = routine.attributes.content.split(",")
     rCard.classList.add("rCard")
     rTitle.innerText = routine.attributes.title
@@ -154,6 +154,7 @@ function renderExercise(exercise, name) {
     exName.innerText = name
     exName.classList.add("exName")
     exDesc.innerText = exercise.description
+    exDesc.classList.add("exDesc")
     exDesc.style.display = "none"
     exName.addEventListener("mouseover", e => {
         e.preventDefault()
