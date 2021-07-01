@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })
 
+//filter feature
+
 //category stuff
 
 function indexCategories(method) {

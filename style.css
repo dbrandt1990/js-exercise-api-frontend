@@ -3,6 +3,36 @@ body {
     color: beige;
 
 }
+h1  {
+    text-align: center;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* forms*/
+#form-wrapper {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+    background-color: darkgrey;
+    border-radius: 25px;
+    width: 85%;
+    margin-left: 5.75em;
+}
+
+#newExerciseForm {
+    font-size: small;
+    padding-top: 5em;
+}
+
+#newRoutineForm {
+    font-size: small;
+    padding-top: 5em;
+}
+/* form inputs */
 
 input[type="text"], textarea {
 
@@ -19,25 +49,37 @@ input[type="text"], textarea {
   input[type="submit"] {
     background-color: aquamarine;
   }
-
+/* filter */
+#filter {
+    margin-left: 5.75em;
+    width: 85%;
+    text-align:center;
+    border-radius: 25px;
+    background-color: #ffdb58;
+}
+#filter > label {
+    color: #555;
+}
+/* routine display */
 .grid{
     display: grid;
     grid-template-columns: repeat(3, minmax(auto, 1fr));
     grid-template-rows: repeat(2, 200px);
     grid-gap: 10px;
+    padding: 5em;
   }
 
   .rCard {
       text-align: center;
-      border: 5px solid black;
+      border: none;
       border-radius: 25px;
-      grid-auto-rows: minmax(min-content, max-content);
       background-color: aquamarine;
 
   }
 
   .rTitle {
-    
+    color: #555;
+    margin: .35em;
   }
 
 .exDesc {
@@ -48,6 +90,8 @@ input[type="text"], textarea {
     -webkit-filter: brightness(100%);
     padding: 2.5px;
     background-color: aquamarine;
+    color: #555;
+    border-radius: 25px;
 }
 
 .exCard:hover {
@@ -58,12 +102,3 @@ input[type="text"], textarea {
     -ms-transition: all 1s ease;
     transition: all 1s ease;
 }
-
-  /* .exCard:hover > .overlay {
-    width:100%;
-    height:100%;
-    position:absolute;
-    background-color:#000;
-    opacity:0.5;
-    border-radius:30px;
-  } */
