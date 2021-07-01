@@ -95,11 +95,12 @@ function createRoutineHandler(e) {
         if (sets[i].value && reps[i].value) {
             content += `${exName}: ${sets[i].value} x ${reps[i].value}, `
         }
-        // reset the form
-        document.forms["newRoutine"].reset()
     })
 
     postRoutine(title, content, category_id)
+
+    // reset the form
+    document.forms["newRoutine"].reset()
 
 }
 
