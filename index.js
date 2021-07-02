@@ -145,7 +145,6 @@ class Dom {
         rCard.appendChild(rTitle)
 
         routine.attributes.exercises.forEach((exercise, index) => {
-            console.log(exercise.category_id)
             if (exercise.category_id) {
                 let renderedExercise = dom.renderExercise(exercise, rContArr[index])
                 rCard.appendChild(renderedExercise)

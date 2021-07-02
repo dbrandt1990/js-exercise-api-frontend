@@ -4,16 +4,21 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 }
+/* heading */
+
 h1  {
     text-align: center;
 }
 
-h2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 /* forms*/
+
+h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 #form-wrapper {
     display: flex;
     justify-content: space-around;
@@ -62,8 +67,8 @@ input[type="text"], select {
 /* routine display */
 .grid{
     display: grid;
-    grid-template-columns: repeat(3, minmax(auto, 1fr));
-    grid-template-rows: repeat(2, 200px);
+    grid-template-columns: repeat(3, minmax(150px, 300px));
+    grid-template-rows: repeat(auto-fit, 200px);
     grid-gap: 10px;
     padding: 1em;
   }
