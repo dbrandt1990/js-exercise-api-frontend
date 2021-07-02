@@ -22,9 +22,30 @@ document.addEventListener("DOMContentLoaded", () => {
         createExerciseHandler(e)
     })
 
+    const filter = document.querySelector("#filter")
+
+    filter.addEventListener("change", (e) => {
+        e.preventDefault()
+        let categoryId = e.target.value
+        filterRoutines(categoryId)
+    })
 })
 
 //filter feature
+
+function filterRoutines(category) {
+    let routines = document.querySelectorAll(".rCard")
+
+    routines.forEach(e => {
+
+        if (category == 0 || e.dataset.categoryId == category) {
+            e.style.display = "inline"
+        } else {
+            e.style.display = "none"
+        }
+    })
+
+}
 
 //category stuff
 
@@ -65,6 +86,8 @@ function renderRoutine(routine) {
     let rTitle = document.createElement("h3")
     let rContArr = routine.attributes.content.split(",")
     rCard.classList.add("rCard")
+    //adding category to class to filter
+    rCard.setAttribute("data-category-id", `${routine.attributes.category_id}`)
     rTitle.innerText = routine.attributes.title
     rTitle.classList.add("rTitle")
 
@@ -117,7 +140,6 @@ function postRoutine(title, content, category_id) {
     fetch(ROUTINES_URL, data)
         .then(response => response.json())
         .then(routine => {
-            //there is a type mismatch here that makes it so the routine wont render after it is created but it will persist to db and show after refresh
             renderRoutine(routine.data)
         })
 }
