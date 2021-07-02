@@ -201,7 +201,7 @@ function createExerciseHandler(e) {
     e.preventDefault()
     let name = document.querySelector("#name").value
     let description = document.querySelector("#description").value
-    let category_id = parseInt(document.querySelector("#category").value)
+    let category_id = parseInt(document.querySelector("#newExerciseCategory").value)
 
     postExercise(name, description, category_id)
 
