@@ -96,3 +96,7 @@ input[type="text"], select {
     -ms-transition: all 1s ease;
     transition: all 1s ease;
 }
+
+.routineExercise {
+    padding: 2px;
+}
