@@ -18,7 +18,7 @@ h2 {
     justify-content: space-around;
     padding-bottom: 20px;
     background-color: darkgrey;
-    border-radius: 25px;
+    border-radius: 15px;
     width: 85%;
     margin-left: 5.75em;
 }
@@ -34,20 +34,18 @@ h2 {
 }
 /* form inputs */
 
-input[type="text"], textarea {
-
+input[type="text"], select {
+    border-style: none;
+    border-radius: 3px;
     background-color : #d1d1d1; 
   
   }
 
-  select {
-
-    background-color : #d1d1d1; 
-
-  }
-
   input[type="submit"] {
+    border-style: none;
+    border-radius: 3px;
     background-color: aquamarine;
+    color: #555;
   }
 /* filter */
 #filter {
@@ -72,7 +70,7 @@ input[type="text"], textarea {
   .rCard {
       text-align: center;
       border: none;
-      border-radius: 25px;
+      border-radius: 15px;
       background-color: aquamarine;
 
   }
@@ -81,10 +79,6 @@ input[type="text"], textarea {
     color: #555;
     margin: .35em;
   }
-
-.exDesc {
-
-}
 
 .exCard {
     -webkit-filter: brightness(100%);
