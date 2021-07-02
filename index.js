@@ -103,29 +103,33 @@ class Dom {
 
     renderExercise(exercise, name) {
 
-        let exCard = document.createElement("div")
-        let exName = document.createElement("strong")
-        let exDesc = document.createElement("p")
-        exCard.classList.add("exCard")
-        exName.innerText = name
-        exName.classList.add("exName")
-        exDesc.innerText = exercise.description
-        exDesc.classList.add("exDesc")
-        exDesc.style.display = "none"
-        exName.addEventListener("mouseover", e => {
-            e.preventDefault()
-            exDesc.style.display = "block"
-        })
+        if (name && exercise) {
+            let exCard = document.createElement("div")
+            let exName = document.createElement("strong")
+            let exDesc = document.createElement("p")
 
-        exName.addEventListener("mouseout", e => {
-            e.preventDefault()
+            exCard.classList.add("exCard")
+            exName.innerText = name
+            exName.classList.add("exName")
+            exDesc.innerText = exercise.description
+            exDesc.classList.add("exDesc")
             exDesc.style.display = "none"
-        })
 
-        exCard.appendChild(exName)
-        exCard.appendChild(exDesc)
+            exName.addEventListener("mouseover", e => {
+                e.preventDefault()
+                exDesc.style.display = "block"
+            })
 
-        return exCard
+            exName.addEventListener("mouseout", e => {
+                e.preventDefault()
+                exDesc.style.display = "none"
+            })
+
+            exCard.appendChild(exName)
+            exCard.appendChild(exDesc)
+
+            return exCard
+        }
     }
 
     renderRoutine(routine) {
@@ -141,8 +145,11 @@ class Dom {
         rCard.appendChild(rTitle)
 
         routine.attributes.exercises.forEach((exercise, index) => {
-            let renderedExercise = dom.renderExercise(exercise, rContArr[index])
-            rCard.appendChild(renderedExercise)
+            console.log(exercise.category_id)
+            if (exercise.category_id) {
+                let renderedExercise = dom.renderExercise(exercise, rContArr[index])
+                rCard.appendChild(renderedExercise)
+            }
         })
 
         document.getElementById("routine-container").appendChild(rCard)
