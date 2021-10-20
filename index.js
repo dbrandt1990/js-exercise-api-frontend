@@ -70,7 +70,7 @@ function addCategoriesToDropDown(category) {
 
 }
 
-//routine stuff
+//routines
 
 function indexRoutines(method) {
     return fetch(ROUTINES_URL)
@@ -222,6 +222,7 @@ function postExercise(name, description, category_id) {
         .then(response => response.json())
         .then(exercise => {
             addExercisesToDropDown(exercise.data)
+            alert("Exercise Added")
         })
 }
 
