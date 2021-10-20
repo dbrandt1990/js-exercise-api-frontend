@@ -1,10 +1,10 @@
 body {
-    background-color: #555;
-    color: beige;
-
+  font-family: Verdana, sans-serif;
+  background-color: #555;
+  color: beige;
 }
-h1  {
-    text-align: center;
+h1 {
+  text-align: center;
 }
 
 h2 {
@@ -14,89 +14,89 @@ h2 {
 }
 /* forms*/
 #form-wrapper {
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 20px;
-    background-color: darkgrey;
-    border-radius: 15px;
-    width: 85%;
-    margin-left: 5.75em;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 20px;
+  background-color: darkgrey;
+  border-radius: 15px;
+  width: 85%;
+  margin-left: 5.75em;
 }
 
 #newExerciseForm {
-    font-size: small;
-    padding-top: 5em;
+  font-size: small;
+  padding-top: 5em;
 }
 
 #newRoutineForm {
-    font-size: small;
-    padding-top: 5em;
+  font-size: small;
+  padding-top: 5em;
 }
 /* form inputs */
 
-input[type="text"], select {
-    border-style: none;
-    border-radius: 3px;
-    background-color : #d1d1d1; 
-  
-  }
+input[type="text"],
+select {
+  border-style: none;
+  border-radius: 3px;
+  background-color: #d1d1d1;
+}
 
-  input[type="submit"] {
-    border-style: none;
-    border-radius: 3px;
-    background-color: aquamarine;
-    color: #555;
-  }
+input[type="submit"] {
+  border-style: none;
+  border-radius: 3px;
+  background-color: aquamarine;
+  color: #555;
+}
 /* filter */
 #filter {
-    margin-left: 5.75em;
-    width: 85%;
-    text-align:center;
-    border-radius: 25px;
-    background-color: #ffdb58;
+  margin-left: 5.75em;
+  width: 85%;
+  text-align: center;
+  border-radius: 25px;
+  background-color: #ffdb58;
 }
 #filter > label {
-    color: #555;
+  color: #555;
 }
 /* routine display */
-.grid{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(auto, 1fr));
-    grid-template-rows: repeat(2, 200px);
-    grid-gap: 10px;
-    padding: 5em;
-  }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(auto, 1fr));
+  grid-template-rows: repeat(2, 200px);
+  grid-gap: 10px;
+  padding: 5em;
+}
 
-  .rCard {
-      text-align: center;
-      border: none;
-      border-radius: 15px;
-      background-color: aquamarine;
+.rCard {
+  text-align: center;
+  overflow: auto;
+  border: none;
+  border-radius: 15px;
+  background-color: aquamarine;
+}
 
-  }
-
-  .rTitle {
-    color: #555;
-    margin: .35em;
-  }
+.rTitle {
+  color: #555;
+  margin: 0.35em;
+}
 
 .exCard {
-    -webkit-filter: brightness(100%);
-    padding: 2.5px;
-    background-color: aquamarine;
-    color: #555;
-    border-radius: 25px;
+  padding: 2.5px;
+  overflow: visible;
+  background-color: aquamarine;
+  color: #555;
+  border-radius: 25px;
 }
 
 .exCard:hover {
-    -webkit-filter: brightness(70%);
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    -ms-transition: all 1s ease;
-    transition: all 1s ease;
+  background-color: #fcdb66;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
 }
 
 .routineExercise {
-    padding: 2px;
+  padding: 2px;
 }
