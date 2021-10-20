@@ -2,8 +2,6 @@ const EXERCISES_URL = "http://localhost:3000/api/v1/exercise"
 const ROUTINES_URL = "http://localhost:3000/api/v1/routines"
 const CATEGORIES_URL = "http://localhost:3000/api/v1/category"
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
 
     indexExercises(addExercisesToDropDown)
@@ -47,7 +45,7 @@ function filterRoutines(category) {
 
 }
 
-//category stuff
+//category functions
 
 function indexCategories(method) {
     return fetch(CATEGORIES_URL)
@@ -70,7 +68,7 @@ function addCategoriesToDropDown(category) {
 
 }
 
-//routines
+//routine functions
 
 function indexRoutines(method) {
     return fetch(ROUTINES_URL)
@@ -106,12 +104,10 @@ function createRoutineHandler(e) {
     e.preventDefault()
     let title = document.querySelector("#title").value
     let category_id = parseInt(document.querySelector("#routineCategory").value)
-    //nodelists
     let exercises = document.querySelectorAll(".exerciseSelection")
     let sets = document.querySelectorAll(".sets")
     let reps = document.querySelectorAll(".reps")
 
-    //content built by all values in nodelist
     let content = ``
 
     exercises.forEach((exercise, i) => {
@@ -124,7 +120,6 @@ function createRoutineHandler(e) {
 
     postRoutine(title, content, category_id)
 
-    // reset the form
     document.forms["newRoutine"].reset()
 
 }
@@ -143,7 +138,8 @@ function postRoutine(title, content, category_id) {
             renderRoutine(routine.data)
         })
 }
-//exercise stuff
+
+//exercise functions
 
 function indexExercises(method) {
     return fetch(EXERCISES_URL)
@@ -205,7 +201,6 @@ function createExerciseHandler(e) {
 
     postExercise(name, description, category_id)
 
-    // reset the form
     document.forms["newExercise"].reset()
 
 }
